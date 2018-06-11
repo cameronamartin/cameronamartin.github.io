@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Bouncing Box</title>
+	<script src="jquery.min.js"></script>
+
+<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+
+	<!-- BEGIN CSS -->
+	<style>
+		/* TODO 1 */
+		[class="box"] {
+			display: block;
+			position: absolute;
+			width: 60px;
+			height: 60px;
+			top: 0px;
+			left: 0px;
+			background-color: rgb(0,0,0);
+			font-size: 300%;
+			text-align: center;
+			color: white;
+			border-radius: 40px;
+		}
+		body {
+			height: 600px;
+			background-image: url("https://cdn.shopify.com/s/files/1/0249/6374/products/ccp2817-journal-lines-on-ivory_1024x1024.jpeg?v=1443905268");
+		}
+		.disclaimer {
+			margin-top: 670px;
+		}
+	</style>
+
+</head>
+<body class="board">
+	<!-- HTML for the box -->
+	<div class="box">?</div>
+
+	<!-- BEGIN JAVASCRIPT -->
+	<script>
+		(function(){
+			'use strict'
+			/* global &*/
+
+			// Variable declarations
+			var box;
+			var boardWidth;
+			var boardHeight;
+			var update;
+			var handleBoxClick;
+
+			// jQuery stuff setup for you
+			box = $('.box');
+			boardWidth = $('.board').width();
+			boardHeight = $('.board').height();
+			// TODO 2
+			var positionX;
+			var positionY;
+			var points;
+			var speed;
+			var boxColor;
+			var red;
+			var green;
+			var blue;
+			
+			positionX = 0;
+			positionY = 0;
+			points = 0;
+			speed = 10;
+			red = 0;
+			green = 0;
+			blue = 0;
+			
+			var directionX;
+			directionX = 1;
+			var directionY;
+			directionY = 1;
+			
+			function update() {
+				// TODO 3 / 6 / 7 / 8
+			    positionX = positionX + (speed * directionX);
+			    positionY = positionY + (speed * directionY);
+			    box.css('left', positionX);
+			    box.css('top', positionY)
+			    box.text(points);
+			    if(positionX > boardWidth-55) {
+				    directionX = -1;
+				}
+				if(positionX < 5){
+					directionX = 1;
+				}
+				if(positionY > boardHeight){
+					directionY = -1;
+				}
+				if(positionY < 0){
+					directionY = 1;
+				}
+				boxColor = "rgb("+red+","+green+","+blue+")";
+				box.css('background-color', boxColor);
+			};
+
+
+			
+			function handleBoxClick() {
+				// TODO 4 / 5
+				speed = speed + 3;
+				points = points + 1;
+				blue = getRandomIntInclusive(0, 255)
+				red = getRandomIntInclusive(0, 255);
+				green = getRandomIntInclusive(0,255);
+			};
+			
+			function getRandomIntInclusive(min, max) {
+				min = Math.ceil(min);
+				max = Math.floor(max);
+				return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
+			}
+
+
+			//this calls update every 50 milliseconds
+			setInterval(update, 50);
+			// this calls the handle handleBoxClick function every time the box is clicked on
+			box.on('click', handleBoxClick);
+		})();
+	</script>
+	<div class="disclaimer">
+		<h1>Click the Ball, Quick!</h1>
+	</div>
+</body>
+</html>
