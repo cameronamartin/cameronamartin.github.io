@@ -38,7 +38,7 @@
         platform.create(0, 450);
         platform.create(0, 250);
         platform.create(500, 350);
-        platform.create(260, 150);
+        platform.create(260, 100);
         platform.create(500, 550);
         
         
