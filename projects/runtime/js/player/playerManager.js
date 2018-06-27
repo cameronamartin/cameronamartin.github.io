@@ -10,7 +10,6 @@
         KEYCODE_UP = 38,
         KEYCODE_LEFT = 37,
         KEYCODE_RIGHT = 39,
-        KEYCODE_Q = 81,
         KEYCODE_E = 69,
         KEYCODE_W = 87,
         KEYCODE_S = 83,
@@ -70,13 +69,10 @@
                 player.jumpfly();
             } else if (activeKeys[KEYCODE_W]) {
                 player.jump();
-            } else if (activeKeys[KEYCODE_Q]) {
-                player.die();
             } else if (activeKeys[KEYCODE_S]) {
                 player.duckin();
                 _state = 'ducking';
             }
-            
             if (activeKeys[KEYCODE_UP]) { 
             }
             

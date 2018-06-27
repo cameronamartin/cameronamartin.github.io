@@ -6,11 +6,9 @@
             var createjs = window.createjs;
         
             window.opspark.runLevelInGame = function(game) {
-                // some useful constants 
+
                 var groundY = game.groundY;
         
-                // this data will allow us to define all of the
-                // behavior of our game
                 var levelData = {
                     name: "Robot Romp",
                     number: 1, 
@@ -18,12 +16,11 @@
                     gameItems: [
                         
                     ]
-                };
+                }; //Level Data, used to create Obstacles, Enemies, and Rewards through Randomizer
                 window.levelData = levelData;
-                // set this to true or false depending on if you want to see hitzones
-                game.setDebugMode(false);
+                
+                game.setDebugMode(false); // set this to true or false depending on if you want to see hitzones
         
-                // BEGIN EDITING YOUR CODE HERE
                 var type;
                 var height;
                 for(var i = 1; i <= 50; i++){
@@ -48,7 +45,8 @@
                            levelData.gameItems.push({type: 'enemy',x: 400 + 200 * i})
                         }
                     }
-                }
+                } //Randomizes the Level Data
+                
                 var hitZoneSize = 25;
                 var damageFromObstacle = 25;
                 function createSawBlade(inputX) {
@@ -61,7 +59,7 @@
                     myObstacle.addChild(obstacleImage);
                     obstacleImage.x = -25;
                     obstacleImage.y = -25;
-                }
+                } //Creates Saw Blade obstacle
                 function createBox(inputX){
                     var myObstacle = game.createObstacle(hitZoneSize,damageFromObstacle);
                     myObstacle.x = inputX;
@@ -72,7 +70,7 @@
                     obstacleImage.x = -25;
                     obstacleImage.y = -25;
                     
-                }
+                } //Creates Box obstacle
                 function createUfo(inputX){
                     var myObstacle = game.createObstacle(hitZoneSize,damageFromObstacle);
                     myObstacle.x = inputX;
@@ -82,7 +80,7 @@
                     myObstacle.addChild(obstacleImage);
                     obstacleImage.x = -36;
                     obstacleImage.y = -30;
-                }
+                } //Creates Ufo obstacle
                 function createEnemy(inputX){
                     var enemy =  game.createGameItem('enemy',25);
                     enemy.x = inputX;
@@ -94,14 +92,13 @@
                         game.changeIntegrity(-100);
                     };
                     enemy.onProjectileCollision = function(){
-                        enemy.fadeOut();
-                        game.increaseScore(10);
+                        enemy.fadeOut(); 
                     };
                     var redSquare = draw.rect(50,50,'red');
                     redSquare.x = -25;
                     redSquare.y = -25;
                     enemy.addChild(redSquare);
-                }
+                } //Creates Enemy
                 function createReward(inputX){
                     var reward = game.createGameItem('reward',25);
                     reward.x = inputX;
@@ -117,7 +114,7 @@
                     wrench.x = -25;
                     wrench.y = -25;
                     reward.addChild(wrench);
-                }
+                } //Creates Reward
                 
                 for(var i = 0; i < levelData.gameItems.length; i++){
                     if(levelData.gameItems[i].type == 'sawblade'){
@@ -135,7 +132,7 @@
                     if(levelData.gameItems[i].type == 'reward'){
                         createReward(levelData.gameItems[i].x);
                     }
-                }
+                } //Creates Obstacles based on Level Data
         
         
         

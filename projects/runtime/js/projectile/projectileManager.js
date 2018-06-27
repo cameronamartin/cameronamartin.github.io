@@ -79,7 +79,6 @@
                 //projectile.activate();
                 projectile.x = projectilePoint.x;
                 projectile.y = projectilePoint.y;
-                
                 createjs.Tween.get(projectile, {override: true}).wait(500).to({alpha: 0, scaleX: 0.1, scaleY: 0.1}, 1000, createjs.Ease.linear).call(onTweenComplete);
                 
                 view.addChild(projectile);
